@@ -1,10 +1,11 @@
 package com.gmail.dimabah.homeworks.second;
 
-public class MiniCinema extends Cinema{
+public class MiniCinema extends Cinema {
     private String comfort;
     private String drink;
 
-    public MiniCinema(String name, String movie, double price, int row, int seat, String comfort, String drink) {
+    public MiniCinema(String name, String movie, double price,
+                      int row, int seat, String comfort, String drink) {
         super(name, movie, price, row, seat);
         this.comfort = comfort;
         this.drink = drink;

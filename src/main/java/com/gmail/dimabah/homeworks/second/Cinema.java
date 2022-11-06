@@ -10,7 +10,7 @@ public class Cinema {
     private int seat;
     private boolean[][] freeSeat;
 
-    public Cinema(String name, String movie,double price, int row, int seat) {
+    public Cinema(String name, String movie, double price, int row, int seat) {
         this.name = name;
         this.movie = movie;
         this.price = price;
@@ -71,29 +71,41 @@ public class Cinema {
                 name +
                 "\" (rows = " + row +
                 ", seat =" + seat +
-                " [free seat=" + row*seat +
-                "]). Movie:\""+ movie + "\"";
+                " [free seat=" + row * seat +
+                "]). Movie:\"" + movie + "\"";
     }
 
     public Receipt bookSeat(int row, int seat) {
         if (row > this.row || row < 1 || seat > this.seat || seat < 1) {
             return null;
         }
-        if (!freeSeat[row-1][seat-1]) {
-            freeSeat[row-1][seat-1] = true;
-            return new Receipt(name,movie,row,seat,price);
+        if (!freeSeat[row - 1][seat - 1]) {
+            freeSeat[row - 1][seat - 1] = true;
+            return new Receipt(name, movie, row, seat, price);
         }
         return null;
     }
+
     public Receipt bookSeat() {
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j <seat ; j++) {
-                if (!freeSeat [i][j]){
-                    freeSeat [i][j]=true;
-                    return new Receipt(name,movie,i+1,j+1,price);
+            for (int j = 0; j < seat; j++) {
+                if (!freeSeat[i][j]) {
+                    freeSeat[i][j] = true;
+                    return new Receipt(name, movie, i + 1, j + 1, price);
                 }
             }
         }
         return null;
+    }
+
+    public boolean deleteBooking(int row, int seat) {
+        if (row > this.row || row < 1 || seat > this.seat || seat < 1) {
+            return false;
+        }
+        if (freeSeat[row - 1][seat - 1]) {
+            freeSeat[row - 1][seat - 1] = false;
+            return true;
+        }
+        return false;
     }
 }

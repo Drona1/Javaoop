@@ -78,18 +78,18 @@ public class Receipt {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Receipt {Hall \"" );
+        StringBuilder sb = new StringBuilder("Receipt {Hall \"");
         sb.append(name);
         sb.append("\". Movie = \"");
         sb.append(movie);
         sb.append(" (row=");
         sb.append(row);
-        sb.append(", seat=" );
+        sb.append(", seat=");
         sb.append(seat);
         sb.append("). Price=");
         sb.append(price);
 
-        if (other != null){
+        if (other != null) {
             sb.append(" (");
             sb.append(other);
             sb.append(")");
