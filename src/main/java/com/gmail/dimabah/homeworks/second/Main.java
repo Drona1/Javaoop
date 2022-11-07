@@ -13,7 +13,6 @@ public class Main {
         System.out.println(fourDimensionalCinema.bookSeat(5, 5));
         System.out.println(miniCinema.bookSeat());
         System.out.println(bookAnySeat(cinema, fourDimensionalCinema, miniCinema));
-
     }
 
     private static Receipt bookAnySeat(Cinema... arr) {

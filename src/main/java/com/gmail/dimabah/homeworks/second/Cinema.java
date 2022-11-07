@@ -108,4 +108,18 @@ public class Cinema {
         }
         return false;
     }
+
+    public void showSeats() {
+        System.out.println("Screen");
+        for (var row : freeSeat) {
+            for (var seat : row) {
+                if (seat) {
+                    System.out.print("X");
+                } else {
+                    System.out.print("O");
+                }
+            }
+            System.out.println();
+        }
+    }
 }
