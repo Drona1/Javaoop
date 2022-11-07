@@ -1,4 +1,4 @@
-package com.gmail.dimabah.additionally.homeworks.first.advanced;
+package com.gmail.dimabah.additionally.homeworks.first.main.advanced;
 
 public class Main {
     public static void main(String[] args) {

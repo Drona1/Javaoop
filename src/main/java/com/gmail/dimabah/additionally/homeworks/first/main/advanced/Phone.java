@@ -1,4 +1,4 @@
-package com.gmail.dimabah.additionally.homeworks.first.advanced;
+package com.gmail.dimabah.additionally.homeworks.first.main.advanced;
 
 public class Phone {
     private String number;
@@ -36,18 +36,19 @@ public class Phone {
 
     public void makeCall(String number) {
         if (network == null) {
-            System.out.println("Connection error. Try to connect to network again");
+            System.out.println("Connection error." +
+                    " Try to connect to the network again");
             return;
         }
         if (network.checkForNumber(this.number) == null) {
             System.out.println("Connection error." +
-                    " Your number haven't connected to the network");
+                    " Your number isn't connected to the network");
             return;
         }
         Phone opponentPhone = network.checkForNumber(number);
         if (opponentPhone == null) {
             System.out.println("Connection error." +
-                    " Your opponent haven't connected to the network");
+                    "The subscriber isn't connected to the network");
         } else {
             opponentPhone.hasCall(this.number);
         }
@@ -57,6 +58,6 @@ public class Phone {
 
     private void hasCall(String number) {
         System.out.println("You (number: " + this.number +
-                ") have call from number " + number);
+                ") are called from the number " + number);
     }
 }
