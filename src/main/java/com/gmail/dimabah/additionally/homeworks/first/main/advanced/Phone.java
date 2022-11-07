@@ -1,6 +1,6 @@
 package com.gmail.dimabah.additionally.homeworks.first.main.advanced;
 
-public class Phone {
+class Phone {
     private String number;
     private Network network;
 

@@ -1,9 +1,9 @@
 package com.gmail.dimabah.additionally.homeworks.first.main.second;
 
 public class Triangle {
-    double sideA;
-    double sideB;
-    double sideC;
+    private double sideA;
+    private double sideB;
+    private double sideC;
 
     public Triangle(double sideA, double sideB, double sideC) {
         this.sideA = sideA;

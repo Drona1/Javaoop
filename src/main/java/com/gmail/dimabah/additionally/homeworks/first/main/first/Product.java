@@ -1,10 +1,10 @@
 package com.gmail.dimabah.additionally.homeworks.first.main.first;
 
 class Product {
-    String pen;
-    String description;
-    double price;
-    double weight;
+    private String pen;
+    private String description;
+    private double price;
+    private double weight;
 
     public Product(String pen,String description, double price, double weight) {
         this.pen = pen;

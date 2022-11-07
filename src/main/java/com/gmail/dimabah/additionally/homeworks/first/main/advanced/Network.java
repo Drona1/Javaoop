@@ -2,7 +2,7 @@ package com.gmail.dimabah.additionally.homeworks.first.main.advanced;
 
 import java.util.*;
 
-public class Network {
+class Network {
     private Map<String, Phone> map = new HashMap<>();
 
     public Network(Map<String, Phone> map) {
