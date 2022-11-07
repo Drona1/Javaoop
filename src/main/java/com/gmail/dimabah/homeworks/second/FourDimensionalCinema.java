@@ -2,7 +2,7 @@ package com.gmail.dimabah.homeworks.second;
 
 public class FourDimensionalCinema extends Cinema {
     private String effects;
-    private final String screen = "3D";
+    private String screen = "3D";
 
     public FourDimensionalCinema(String name, String movie, double price,
                                  int row, int seat, String effects) {
@@ -20,6 +20,10 @@ public class FourDimensionalCinema extends Cinema {
 
     public String getScreen() {
         return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
     }
 
     @Override
