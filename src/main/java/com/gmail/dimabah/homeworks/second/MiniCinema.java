@@ -38,13 +38,20 @@ public class MiniCinema extends Cinema {
 
     @Override
     public Receipt bookSeat(int row, int seat) {
-        return new Receipt(super.bookSeat(row, seat),
-                "comfort: " + comfort + "; drink = " + drink);
+        Receipt receipt = super.bookSeat(row, seat);
+        if (receipt == null) {
+            return null;
+        }
+        return new Receipt(receipt,"comfort: " + comfort + "; drink = " + drink);
     }
 
     @Override
     public Receipt bookSeat() {
-        return new Receipt(super.bookSeat(),
+        Receipt receipt = super.bookSeat();
+        if (receipt == null) {
+            return null;
+        }
+        return new Receipt(receipt,
                 "comfort: " + comfort + "; drink = " + drink);
     }
 }

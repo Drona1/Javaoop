@@ -34,13 +34,21 @@ public class FourDimensionalCinema extends Cinema {
 
     @Override
     public Receipt bookSeat(int row, int seat) {
-        return new Receipt(super.bookSeat(row, seat),
+        Receipt receipt = super.bookSeat(row, seat);
+        if (receipt == null) {
+            return null;
+        }
+        return new Receipt(receipt,
                 "effects: " + effects + "; screen = " + screen);
     }
 
     @Override
     public Receipt bookSeat() {
-        return new Receipt(super.bookSeat(),
+        Receipt receipt = super.bookSeat();
+        if (receipt == null) {
+            return null;
+        }
+        return new Receipt(receipt,
                 "effects: " + effects + "; screen = " + screen);
     }
 
