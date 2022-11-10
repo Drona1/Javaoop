@@ -3,6 +3,8 @@ package com.gmail.dimabah.homeworks.third.products;
 import com.gmail.dimabah.homeworks.third.Categories;
 import com.gmail.dimabah.homeworks.third.Product;
 
+import java.util.Objects;
+
 public class Food extends Product {
     private String expirationDate;
     private int weight;
@@ -37,6 +39,20 @@ public class Food extends Product {
     public String toString() {
         return super.toString() + ", weight=" + weight + " (expirationDate=" +
                 expirationDate + ")}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Food food = (Food) o;
+        return weight == food.weight && Objects.equals(expirationDate, food.expirationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), expirationDate, weight);
     }
 
     @Override

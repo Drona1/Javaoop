@@ -3,6 +3,8 @@ package com.gmail.dimabah.homeworks.third.products;
 import com.gmail.dimabah.homeworks.third.Categories;
 import com.gmail.dimabah.homeworks.third.Product;
 
+import java.util.Objects;
+
 public class Souvenir extends Product {
     private int weight;
 
@@ -30,6 +32,20 @@ public class Souvenir extends Product {
         return super.toString() +
                 "weight=" + weight +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Souvenir souvenir = (Souvenir) o;
+        return weight == souvenir.weight;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), weight);
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.gmail.dimabah.homeworks.third.products;
 import com.gmail.dimabah.homeworks.third.Categories;
 import com.gmail.dimabah.homeworks.third.Product;
 
+import java.util.Objects;
+
 public class Clothes extends Product {
     private int size;
     private String color;
@@ -50,6 +52,21 @@ public class Clothes extends Product {
                 ", color=" + color +
                 ", material=" + material +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Clothes clothes = (Clothes) o;
+        return size == clothes.size && Objects.equals(color, clothes.color) &&
+                Objects.equals(material, clothes.material);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), size, color, material);
     }
 
     @Override

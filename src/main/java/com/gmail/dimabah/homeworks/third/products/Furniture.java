@@ -3,6 +3,8 @@ package com.gmail.dimabah.homeworks.third.products;
 import com.gmail.dimabah.homeworks.third.Categories;
 import com.gmail.dimabah.homeworks.third.Product;
 
+import java.util.Objects;
+
 public class Furniture extends Product {
     private int height;
     private int width;
@@ -72,6 +74,22 @@ public class Furniture extends Product {
                 ", material=" + material +
                 ", color=" + color +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Furniture furniture = (Furniture) o;
+        return height == furniture.height && width == furniture.width
+                && length == furniture.length && Objects.equals(material, furniture.material)
+                && Objects.equals(color, furniture.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), height, width, length, material, color);
     }
 
     @Override

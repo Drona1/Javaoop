@@ -1,5 +1,7 @@
 package com.gmail.dimabah.homeworks.third;
 
+import java.util.Objects;
+
 abstract public class Product implements Cloneable {
     private String name;
     private int amount;
@@ -55,6 +57,20 @@ abstract public class Product implements Cloneable {
                 ", amount=" + amount +
                 ", price=" + price +
                 ", category='" + category + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 &&
+                Objects.equals(name, product.name) && category == product.category;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, category);
     }
 
     @Override
