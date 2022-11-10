@@ -56,48 +56,54 @@ public class UserInterface {
         String command = "";
         try (Scanner sc = new Scanner(System.in)) {
             for (; ; ) {
-                customer.showCategories(store);
-                category = quireInt(sc) - 1;
-                if (category == -1) {
-                    return;
+                category = quireInt(sc, customer.showCategories(store)) - 1;
+                switch (category) {
+                    case -1 -> {
+                        customer.showBoughtProducts();
+                        return;
+                    }
+                    case -2 -> {
+                        dialogPay(sc);
+                        continue;
+                    }
                 }
                 do {
-                    customer.showAssortment(store, category);
-                    index = quireInt(sc) - 1;
+                    index = quireInt(sc, customer.showAssortment(store, category)) - 1;
                     if (index == -1) {
                         break;
+                    } else if (index == -2) {
+                        dialogPay(sc);
+                        continue;
                     }
                     System.out.println("how many do you need?");
-                    amount = quireInt(sc);
+                    amount = quireInt(sc, (1 << -1) - 1);
                     buyProduct(index, category, amount);
                     command = quireString(sc);
-                    if (command.equals("no")) {
-                        customer.showShoppingCart();
-                        switch (quirePay(sc)) {
-                            case ("yes") -> {
-                                paymentSystem.payProduct(customer, store);
-                                customer.showBoughtProducts();
-                                return;
-                            }
-                            case ("no") -> store.clearShoppingCart();
-                            case ("0") -> command = "";
-                        }
+                    if (command.equals("no")||command.equals("n")||command.equals("-")) {
+                        dialogPay(sc);
                     }
                 } while (!command.equals("0"));
             }
         }
     }
-
-    private int quireInt(Scanner sc) {
+    private int quireInt(Scanner sc, int limit) {
         int input = -1;
         while (input < 0) {
             if (sc.hasNextInt()) {
                 input = sc.nextInt();
                 sc.nextLine();
-                return input;
+                if (input < 0 || input > limit) {
+                    System.out.println("Invalid value," +
+                            " value must be between 0 and " + limit);
+                    input = -1;
+                } else {
+                    return input;
+                }
             } else {
+                if (sc.nextLine().equals("cart")) {
+                    return -1;
+                }
                 System.out.println("Wrong data, try again");
-                sc.nextLine();
             }
         }
         return 0;
@@ -105,23 +111,32 @@ public class UserInterface {
 
     private String quireString(Scanner sc) {
         System.out.println("Do you want to continue shopping?");
-        System.out.println("'yes' - to continue, 'no' - to place an order, '0' to return");
+        System.out.println("'yes' / 'y' / '+' - to continue, 'no' / 'n' / '-' - to place an order, '0' to return");
         return sc.nextLine();
     }
 
-    private String quirePay(Scanner sc) {
+    private void dialogPay(Scanner sc) {
+        customer.showShoppingCart();
         System.out.println("Do you want to pay for this order?");
-        System.out.println("'yes' - pay, 'no' - empty the Shopping Car, '0' to return");
-        return sc.nextLine();
+        System.out.println("Enter 'yes'/ 'y' / 'pay' / '+' to pay;" +
+                " 'no' / 'n' / '-' / 'empty' to empty the Shopping Car; '0' to return");
+
+        switch (sc.nextLine()) {
+            case "yes","y","pay","+" -> {
+                paymentSystem.payProduct(customer, store);
+                customer.showBoughtProducts();
+            }
+            case "no","n","-","empty" -> store.clearShoppingCart();
+        }
     }
 
     private void buyProduct(int index, int category, int amount) {
-        int cout = -1;
+        int count = -1;
         for (var i : store.getProducts()) {
             if (i.getCategory().ordinal() == category) {
-                cout++;
+                count++;
             }
-            if (cout == index) {
+            if (count == index) {
                 customer.buyProduct(store, i.getName(), amount);
                 break;
             }

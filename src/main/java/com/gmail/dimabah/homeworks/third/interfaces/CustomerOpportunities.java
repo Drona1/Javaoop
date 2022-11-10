@@ -5,9 +5,9 @@ import com.gmail.dimabah.homeworks.third.Product;
 import java.util.List;
 
 public interface CustomerOpportunities {
-    void showCategories();
+    int showCategories();
 
-    void showAssortment(int numberCategories);
+    int showAssortment(int numberCategories);
 
     boolean buyProduct(String name, int amount);
 

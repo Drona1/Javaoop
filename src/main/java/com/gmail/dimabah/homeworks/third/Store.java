@@ -127,17 +127,22 @@ public class Store implements ProductManagement, CustomerOpportunities, PaymentS
     }
 
     @Override
-    public void showCategories() {
+    public int showCategories() {
         Categories[] categories = Categories.values();
-        for (int i = 0; i < categories.length; i++) {
-            System.out.println(i + 1 + ". " + categories[i]);
+        int count = 1;
+        for (var i : categories) {
+            System.out.println(count + ". " + i);
+            count++;
         }
+        return count-1;
+
+
     }
 
     @Override
-    public void showAssortment(int numberCategories) {
+    public int showAssortment(int numberCategories) {
         boolean flag = true;
-        int count =1;
+        int count = 1;
         for (var i : products) {
             if (i.getCategory().ordinal() == numberCategories) {
                 if (flag) {
@@ -148,6 +153,7 @@ public class Store implements ProductManagement, CustomerOpportunities, PaymentS
                 count++;
             }
         }
+        return count-1;
     }
 
     @Override
@@ -191,18 +197,18 @@ public class Store implements ProductManagement, CustomerOpportunities, PaymentS
         }
         products.sort(new ProductsComparator());
         Categories categories = null;
-        int count=1;
+        int count = 1;
         for (var i : products) {
-            if (i.getCategory()!=categories){
-                if (categories==null){
+            if (i.getCategory() != categories) {
+                if (categories == null) {
                     System.out.println();
                     System.out.println("Products:");
                     System.out.println("____________________________________");
-                }else{
+                } else {
                     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 }
                 i.showHeader();
-                categories=i.getCategory();
+                categories = i.getCategory();
             }
             categories = i.getCategory();
             i.showProduct(count);
@@ -218,18 +224,18 @@ public class Store implements ProductManagement, CustomerOpportunities, PaymentS
         }
         shoppingCart.sort(new ProductsComparator());
         Categories categories = null;
-        int count =1;
+        int count = 1;
         for (var i : shoppingCart) {
-            if (i.getCategory()!=categories){
-                if (categories==null){
+            if (i.getCategory() != categories) {
+                if (categories == null) {
                     System.out.println();
                     System.out.println("Shopping Cart:");
                     System.out.println("____________________________________");
-                }else{
+                } else {
                     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 }
                 i.showHeader();
-                categories=i.getCategory();
+                categories = i.getCategory();
             }
             i.showProduct(count);
             count++;
