@@ -53,7 +53,6 @@ public class UserInterface {
         int category = 0;
         int index = 0;
         int amount = 0;
-        String command = "";
         try (Scanner sc = new Scanner(System.in)) {
             for (; ; ) {
                 category = quireInt(sc, customer.showCategories(store)) - 1;
@@ -63,8 +62,11 @@ public class UserInterface {
                         return;
                     }
                     case -2 -> {
-                        dialogPay(sc);
-                        continue;
+                        if (dialogPay(sc)) {
+                            continue;
+                        }else{
+                            return;
+                        }
                     }
                 }
                 do {
@@ -72,17 +74,16 @@ public class UserInterface {
                     if (index == -1) {
                         break;
                     } else if (index == -2) {
-                        dialogPay(sc);
-                        continue;
+                        if (dialogPay(sc)) {
+                            continue;
+                        }else{
+                            return;
+                        }
                     }
                     System.out.println("how many do you need?");
                     amount = quireInt(sc, (1 << -1) - 1);
                     buyProduct(index, category, amount);
-                    command = quireString(sc);
-                    if (command.equals("no")||command.equals("n")||command.equals("-")) {
-                        dialogPay(sc);
-                    }
-                } while (!command.equals("0"));
+                } while (true);
             }
         }
     }
@@ -109,17 +110,12 @@ public class UserInterface {
         return 0;
     }
 
-    private String quireString(Scanner sc) {
-        System.out.println("Do you want to continue shopping?");
-        System.out.println("'yes' / 'y' / '+' - to continue, 'no' / 'n' / '-' - to place an order, '0' to return");
-        return sc.nextLine();
-    }
-
-    private void dialogPay(Scanner sc) {
+    private boolean dialogPay(Scanner sc) {
         customer.showShoppingCart();
         System.out.println("Do you want to pay for this order?");
-        System.out.println("Enter 'yes'/ 'y' / 'pay' / '+' to pay;" +
-                " 'no' / 'n' / '-' / 'empty' to empty the Shopping Car; '0' to return");
+        System.out.println("Enter 'yes'/'y'/'pay'/'+' to pay;" +
+                "         'no'/'n'/'-'/'empty' to empty the Shopping Car;" +
+                "         '0' to return    'exit' to exit");
 
         switch (sc.nextLine()) {
             case "yes","y","pay","+" -> {
@@ -127,7 +123,11 @@ public class UserInterface {
                 customer.showBoughtProducts();
             }
             case "no","n","-","empty" -> store.clearShoppingCart();
+            case "exit" -> {customer.showBoughtProducts();
+                return false;
+            }
         }
+        return true;
     }
 
     private void buyProduct(int index, int category, int amount) {

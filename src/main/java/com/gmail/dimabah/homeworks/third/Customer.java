@@ -82,9 +82,9 @@ public class Customer implements PaymentSystemForCustomer {
                 if (categories == null) {
                     System.out.println();
                     System.out.println("Bought Products:");
-                    System.out.println("____________________________________");
+                    System.out.println("-".repeat(100));
                 } else {
-                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("~".repeat(100));
                 }
                 i.showHeader();
                 categories = i.getCategory();
@@ -92,7 +92,7 @@ public class Customer implements PaymentSystemForCustomer {
             i.showProduct(count);
             count++;
         }
-        System.out.println("____________________________________");
+        System.out.println("-".repeat(100));
         System.out.println("Total: " + getTotal(boughtProducts));
         System.out.println("Money left: " + money);
         System.out.println();
@@ -113,9 +113,9 @@ public class Customer implements PaymentSystemForCustomer {
                 if (categories == null) {
                     System.out.println();
                     System.out.println("Shopping Cart:");
-                    System.out.println("____________________________________");
+                    System.out.println("_".repeat(100));
                 } else {
-                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("~".repeat(100));
                 }
                 i.showHeader();
                 categories = i.getCategory();
@@ -123,9 +123,10 @@ public class Customer implements PaymentSystemForCustomer {
             i.showProduct(count);
             count++;
         }
-        System.out.println("____________________________________");
+        System.out.println("_".repeat(100));
         System.out.println("Total: " + getTotal(shoppingCart));
         System.out.println("Your money: " + money);
+        System.out.println();
     }
 
     @Override
