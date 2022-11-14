@@ -114,10 +114,35 @@ public class Limousine extends Car {
 
     @Override
     public String toString() {
-        return "Limousine{" +
-                "comfort='" + comfort + '\'' +
-                ", extendedBase=" + extendedBase +
-                '}' + " super: " + super.toString();
+        StringBuffer sb = new StringBuffer("Limousine ");
+        sb.append(super.getName());
+        sb.append(" - ");
+        sb.append(super.getPrice());
+        sb.append("$ (color=");
+        sb.append(super.getColor());
+        sb.append(", seat=");
+        sb.append(super.getSeats());
+        sb.append(", engine [power=");
+        sb.append(super.getEngine().getPower());
+        sb.append(" hp, fuel consumption=");
+        sb.append(super.getEngine().getFuelConsumption());
+        sb.append(" L/100 km], wheels [");
+        for (var wheel : super.getWheels()) {
+            sb.append("(");
+            sb.append(wheel.getProducer());
+            sb.append(") diameter=");
+            sb.append(wheel.getDiameter());
+            sb.append(", width=");
+            sb.append(wheel.getWidth());
+        }
+        sb.append("] , comfort=");
+        sb.append(comfort);
+        if (isExtendedBase()) {
+            sb.append(", exended base");
+        }
+        sb.append(")");
+
+        return sb.toString();
     }
 
     @Override
