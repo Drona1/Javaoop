@@ -16,19 +16,25 @@ public class Main {
                 4, 5, "comfort", true);
         Salon salon = new Salon("AutoS", limousine, suv);
 
-        System.out.println("Hello, I want to buy a car: ");
-        System.out.println(limousineToBuy);
-        System.out.println("Do you have the same car?");
-        boolean flag = true;
-        for (var car : salon.getCars()) {
-            if (car.hashCode() == limousineToBuy.hashCode() && car.equals(limousineToBuy)) {
-                System.out.println("Yes, we have such a car");
-                System.out.println(car);
-                flag = false;
+
+        if (limousineToBuy != null) {
+            System.out.println("Hello, I want to buy a car: ");
+            System.out.println(limousineToBuy);
+
+            System.out.println("Do you have the same car?");
+            boolean flag = true;
+            for (var car : salon.getCars()) {
+                if (car.hashCode() == limousineToBuy.hashCode() && car.equals(limousineToBuy)) {
+                    System.out.println("Yes, we have such a car");
+                    System.out.println(car);
+                    flag = false;
+                }
             }
-            if (flag){
+            if (flag) {
                 System.out.println("Sorry, but we don't have such a car");
             }
+        }else{
+            System.out.println("I'm sorry, i forgot what i wanted");
         }
     }
 }

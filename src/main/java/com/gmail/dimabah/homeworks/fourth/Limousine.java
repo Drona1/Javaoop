@@ -2,7 +2,7 @@ package com.gmail.dimabah.homeworks.fourth;
 
 public class Limousine extends Car {
     private String comfort;
-    private boolean extendedBase = true;
+    private boolean extendedBase;
 
     public Limousine(String name, String color, double price, Engine engine,
                      Wheel[] wheels, int seats, String comfort, boolean extendedBase) {
@@ -122,18 +122,28 @@ public class Limousine extends Car {
         sb.append(super.getColor());
         sb.append(", seat=");
         sb.append(super.getSeats());
-        sb.append(", engine [power=");
-        sb.append(super.getEngine().getPower());
-        sb.append(" hp, fuel consumption=");
-        sb.append(super.getEngine().getFuelConsumption());
-        sb.append(" L/100 km], wheels [");
-        for (var wheel : super.getWheels()) {
-            sb.append("(");
-            sb.append(wheel.getProducer());
-            sb.append(") diameter=");
-            sb.append(wheel.getDiameter());
-            sb.append(", width=");
-            sb.append(wheel.getWidth());
+        if (super.getEngine()!=null) {
+            sb.append(", engine [power=");
+            sb.append(super.getEngine().getPower());
+            sb.append(" hp, fuel consumption=");
+            sb.append(super.getEngine().getFuelConsumption());
+            sb.append(" L/100 km], wheels [");
+        }else {
+            sb.append(", without engine, wheels [");
+        }
+        if (super.getWheels()!=null) {
+            for (var wheel : super.getWheels()) {
+                if (wheel!=null) {
+                    sb.append("(");
+                    sb.append(wheel.getProducer());
+                    sb.append(") diameter=");
+                    sb.append(wheel.getDiameter());
+                    sb.append(", width=");
+                    sb.append(wheel.getWidth());
+                }
+            }
+        }else{
+            sb.append("no wheels");
         }
         sb.append("] , comfort=");
         sb.append(comfort);
