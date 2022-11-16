@@ -23,14 +23,6 @@ public class Store implements ProductManagement, CustomerOpportunities, PaymentS
     }
 
 
-    @Override
-    public String toString() {
-        return "Store{" +
-                "products=" + products +
-                ", shoppingCart=" + shoppingCart +
-                '}';
-    }
-
     public List<Product> getProducts() {
         return products;
     }
@@ -41,6 +33,26 @@ public class Store implements ProductManagement, CustomerOpportunities, PaymentS
         return shoppingCart;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Store store = (Store) o;
+        return Objects.equals(products, store.products) && Objects.equals(shoppingCart, store.shoppingCart);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(products, shoppingCart);
+    }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "products=" + products +
+                ", shoppingCart=" + shoppingCart +
+                '}';
+    }
 
     @Override
     public boolean addProduct(Product product) {

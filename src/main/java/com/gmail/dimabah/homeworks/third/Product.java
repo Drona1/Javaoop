@@ -1,7 +1,5 @@
 package com.gmail.dimabah.homeworks.third;
 
-import java.util.Objects;
-
 abstract public class Product implements Cloneable {
     private String name;
     private int amount;
@@ -52,25 +50,48 @@ abstract public class Product implements Cloneable {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "class Product [" +
                 "name='" + name + '\'' +
                 ", amount=" + amount +
-                ", price=" + price +
-                ", category='" + category + '\'';
+                " pcs., price=" + price +
+                "$, category='" + category + '\''+"]";
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 &&
-                Objects.equals(name, product.name) && category == product.category;
+
+        Product prod = (Product) o;
+        if (name == null || !name.equals(prod.getName())) return false;
+        if (price!= prod.getPrice()) return false;
+        if (category!=null || category!=prod.getCategory()) return false;
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, price, category);
+        int result = 1;
+        result = 31 * result + hashCodeFromSting(name);
+
+        long temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+
+        if (category != null) {
+            result = 31 * result + hashCodeFromSting(category.name());
+        }
+        return result;
+    }
+
+    private int hashCodeFromSting(String text) {
+        int result = 1;
+        if (text == null) {
+            return 0;
+        } else {
+            for (int i = 0; i < text.length(); i++) {
+                result = 31 * result + text.charAt(i);
+            }
+        }
+        return result;
     }
 
     @Override

@@ -40,6 +40,19 @@ public class Customer implements PaymentSystemForCustomer {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Double.compare(customer.money, money) == 0 && Objects.equals(shoppingCart, customer.shoppingCart) && Objects.equals(boughtProducts, customer.boughtProducts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(money, shoppingCart, boughtProducts);
+    }
+
+    @Override
     public String toString() {
         return "Customer{" +
                 "money=" + money +

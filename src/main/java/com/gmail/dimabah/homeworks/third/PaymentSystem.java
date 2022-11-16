@@ -4,6 +4,7 @@ import com.gmail.dimabah.homeworks.third.interfaces.PaymentSystemForCustomer;
 import com.gmail.dimabah.homeworks.third.interfaces.PaymentSystemForStore;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PaymentSystem {
     private String name;
@@ -23,6 +24,18 @@ public class PaymentSystem {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PaymentSystem that = (PaymentSystem) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     @Override
     public String toString() {
