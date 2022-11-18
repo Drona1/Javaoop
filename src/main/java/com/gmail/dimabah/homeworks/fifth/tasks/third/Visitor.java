@@ -3,8 +3,8 @@ package com.gmail.dimabah.homeworks.fifth.tasks.third;
 import java.util.Objects;
 
 public class Visitor {
-    String name;
-    double money;
+    private String name;
+    private double money;
 
     public Visitor(String name, double money) {
         this.name = name;
