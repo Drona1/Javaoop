@@ -115,9 +115,14 @@ public class QueueCustom<T> implements Iterable<T> {
     public boolean contains(T data) {
         Element<T> current = head;
         for (int i = 0; i < currentSize; i++) {
-            if ((current.value != null && current.value.equals(data)) ||
-                    (current.value == null && data == null)) {
-                return true;
+            if (data == null || current.value == null) {
+                if (current.value == data) {
+                    return true;
+                }
+            } else {
+                if (current.value.equals(data)) {
+                    return true;
+                }
             }
             current = current.next;
         }

@@ -101,8 +101,14 @@ public class ArrayListCustom<T> implements CollectionCustom<T> {
     @Override
     public boolean contains(T data) {
         for (int i = 0; i < currentIndex; i++) {
-            if (array[i].equals(data)) {
-                return true;
+            if (data == null || array[i] == null) {
+                if (array[i] == data) {
+                    return true;
+                }
+            } else {
+                if (array[i].equals(data)) {
+                    return true;
+                }
             }
         }
         return false;
