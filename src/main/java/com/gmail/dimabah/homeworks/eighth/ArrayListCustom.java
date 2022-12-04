@@ -146,14 +146,13 @@ public class ArrayListCustom<T> implements CollectionCustom<T> {
         return new ArrayListCustomIterator();
     }
 
-    private class ArrayListCustomIterator implements Iterator<T>{
-        int indexIteration=0;
-
+    private class ArrayListCustomIterator implements Iterator<T> {
+        int indexIteration = 0;
 
 
         @Override
         public boolean hasNext() {
-            return indexIteration<currentIndex;
+            return indexIteration < currentIndex;
         }
 
         @Override

@@ -180,20 +180,21 @@ class ArrayListCustomTest {
 
     @Test
     void iterationInList() {
-        int counter=0;
+        int counter = 0;
         for (var i : list) {
-            assertEquals(i,list.get(counter));
+            assertEquals(i, list.get(counter));
             counter++;
         }
     }
+
     @Test
     void iterationInEmptyList() {
-        ArrayListCustom <Integer> obj = new ArrayListCustom<>();
+        ArrayListCustom<Integer> obj = new ArrayListCustom<>();
         assertEquals("[]", obj.toString());
 
-        int counter=0;
+        int counter = 0;
         for (var i : obj) {
-            assertEquals(i,obj.get(counter));
+            assertEquals(i, obj.get(counter));
             counter++;
         }
     }

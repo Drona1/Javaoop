@@ -177,8 +177,9 @@ class QueueCustomTest {
         assertTrue(queueFull.contains(null));
         assertFalse(queueFull.contains(5));
     }
+
     @Test
-    void print(){
+    void print() {
         var output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
@@ -187,6 +188,7 @@ class QueueCustomTest {
 
         System.setOut(System.out);
     }
+
     @Test
     void testToString() {
         assertEquals("[1, 2, null]", queueFull.toString());
@@ -248,6 +250,7 @@ class QueueCustomTest {
         obj.add(3);
         assertNotEquals(queueFull.hashCode(), obj.hashCode());
     }
+
     @Test
     void testHashCodeWithDifferentCapacity() {
         QueueCustom<Integer> obj = new QueueCustom<>();
@@ -267,5 +270,21 @@ class QueueCustomTest {
     void testHashCodeWithZeroQueue() {
         QueueCustom<Integer> obj = new QueueCustom<>(0);
         assertEquals(queueZero.hashCode(), obj.hashCode());
+    }
+
+    @Test
+    void iterationInList() {
+        for (var i : queueFull) {
+            assertEquals(i, queueFull.poll());
+        }
+    }
+
+    @Test
+    void iterationInEmptyList() {
+        assertEquals("[]", queueEmpty.toString());
+
+        for (var i : queueEmpty) {
+            assertEquals(i, queueEmpty.poll());
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.gmail.dimabah.homeworks.eighth;
 
 import java.util.*;
 
-public class QueueCustom<T> {
+public class QueueCustom<T> implements Iterable<T> {
 
     private Element<T> head;
     private Element<T> tail;
@@ -115,8 +115,8 @@ public class QueueCustom<T> {
     public boolean contains(T data) {
         Element<T> current = head;
         for (int i = 0; i < currentSize; i++) {
-            if ((current.value!=null && current.value.equals(data)) ||
-                    (current.value==null && data ==null)) {
+            if ((current.value != null && current.value.equals(data)) ||
+                    (current.value == null && data == null)) {
                 return true;
             }
             current = current.next;
@@ -173,5 +173,26 @@ public class QueueCustom<T> {
             current = current.next;
         }
         return result;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new QueueCustomIterator();
+    }
+
+    private class QueueCustomIterator implements Iterator<T> {
+        Element<T> elementIteration = head;
+
+        @Override
+        public boolean hasNext() {
+            return elementIteration != null;
+        }
+
+        @Override
+        public T next() {
+            Element<T> temp = elementIteration;
+            elementIteration = elementIteration.next;
+            return temp.value;
+        }
     }
 }

@@ -115,7 +115,8 @@ public class LinkedListCustom<T> implements CollectionCustom<T> {
         size--;
         return true;
     }
-    private void removeElement(int index){
+
+    private void removeElement(int index) {
         if (size / 2 >= index) {
             removeLeft(index);
         } else {
@@ -208,10 +209,10 @@ public class LinkedListCustom<T> implements CollectionCustom<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LinkedListCustom<?> that = (LinkedListCustom<?>) o;
-        if (size != that.size ) return false;
+        if (size != that.size) return false;
 
-      Element<?> current = first;
-      Element<?> objCurrent = that.first;
+        Element<?> current = first;
+        Element<?> objCurrent = that.first;
         for (int i = 0; i < size; i++) {
             if ((objCurrent.value == null && current.value != null) ||
                     (objCurrent.value != null && current.value == null) ||
@@ -245,12 +246,12 @@ public class LinkedListCustom<T> implements CollectionCustom<T> {
 
         @Override
         public boolean hasNext() {
-            return elementIteration!= null;
+            return elementIteration != null;
         }
 
         @Override
         public T next() {
-            Element<T> temp =elementIteration;
+            Element<T> temp = elementIteration;
             elementIteration = elementIteration.next;
             return temp.value;
         }

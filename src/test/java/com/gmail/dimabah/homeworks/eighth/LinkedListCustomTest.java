@@ -38,9 +38,9 @@ class LinkedListCustomTest {
 
         assertEquals("[1, 5, 2, 3, null]", list.toString());
     }
-    @Test
 
-    void addInsideFindRight(){
+    @Test
+    void addInsideFindRight() {
         list.add(5);
         list.add(6);
         assertTrue(list.add(10, 4));
@@ -137,9 +137,10 @@ class LinkedListCustomTest {
         list.add(null, 0);
         assertNull(list.getFirst());
     }
+
     @Test
-    void getFirstNull(){
-        LinkedListCustom <Integer> obj = new LinkedListCustom<>();
+    void getFirstNull() {
+        LinkedListCustom<Integer> obj = new LinkedListCustom<>();
         assertNull(obj.getFirst());
     }
 
@@ -149,9 +150,10 @@ class LinkedListCustomTest {
         list.add(5);
         assertEquals(5, list.getLast());
     }
+
     @Test
-    void getLastNull(){
-        LinkedListCustom <Integer> obj = new LinkedListCustom<>();
+    void getLastNull() {
+        LinkedListCustom<Integer> obj = new LinkedListCustom<>();
         assertNull(obj.getLast());
     }
 
@@ -163,27 +165,28 @@ class LinkedListCustomTest {
 
     @Test
     void iterationInList() {
-        int counter=0;
+        int counter = 0;
         for (var i : list) {
-            assertEquals(i,list.get(counter));
+            assertEquals(i, list.get(counter));
             counter++;
         }
     }
+
     @Test
     void iterationInEmptyList() {
-        ArrayListCustom <Integer> obj = new ArrayListCustom<>();
+        ArrayListCustom<Integer> obj = new ArrayListCustom<>();
         assertEquals("[]", obj.toString());
 
-        int counter=0;
+        int counter = 0;
         for (var i : obj) {
-            assertEquals(i,obj.get(counter));
+            assertEquals(i, obj.get(counter));
             counter++;
         }
     }
 
     @Test
     void testEquals() {
-         LinkedListCustom<Integer> obj = new LinkedListCustom<>();
+        LinkedListCustom<Integer> obj = new LinkedListCustom<>();
         obj.add(1);
         obj.add(2);
         obj.add(3);
