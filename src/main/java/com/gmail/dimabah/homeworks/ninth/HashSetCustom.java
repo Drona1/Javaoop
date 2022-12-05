@@ -143,6 +143,12 @@ public class HashSetCustom<T> implements Iterable<T> {
         }
         return false;
     }
+
+    //This method is made to fulfill the conditions of the task
+    public boolean remove(int index) {
+        array[index] = null;
+        return true;
+    }
     public int getSize(){
         return size;
     }
@@ -151,8 +157,17 @@ public class HashSetCustom<T> implements Iterable<T> {
     }
 
 
-    public T get(T data) {
+    public int get(T data) {
         Element<T> result = findElement(data);
+        if (result == null) {
+            return -1;
+        }
+        return calculateIndexByHashCode(data);
+    }
+
+    //This method is made to fulfill the conditions of the task
+    public T get(int index) {
+       Element<T> result = array[index];
         if (result == null) {
             return null;
         }

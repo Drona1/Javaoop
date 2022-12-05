@@ -52,9 +52,9 @@ class HashSetCustomTest {
 
     @Test
     void remove() {
-        assertTrue(set.remove(2));
+        assertTrue(set.remove(Integer.valueOf(2)));
         assertEquals("[{null}{1}]", set.toString());
-        assertFalse(set.remove(5));
+        assertFalse(set.remove(Integer.valueOf(5)));
         assertTrue(set.remove(null));
         assertEquals("[{1}]", set.toString());
 
@@ -67,23 +67,36 @@ class HashSetCustomTest {
         set.add(34);
         assertEquals("[{2}{null}{1, 12, 23, 34}]", set.toString());
         //removed first
-        assertTrue(set.remove(1));
+        assertTrue(set.remove(Integer.valueOf(1)));
         assertEquals("[{2}{null}{12, 23, 34}]", set.toString());
         //removed from center
-        assertTrue(set.remove(23));
+        assertTrue(set.remove(Integer.valueOf(23)));
         assertEquals("[{2}{null}{12, 34}]", set.toString());
         //removed last
-        assertTrue(set.remove(34));
+        assertTrue(set.remove(Integer.valueOf(34)));
         assertEquals("[{2}{null}{12}]", set.toString());
     }
 
     @Test
-    void get() {
-        assertEquals(2, set.get(2));
-        assertNull(set.get(5));
-        assertNull(set.get(null));
+    void removeAllElementByIndex() {  //This method is made to fulfill the conditions of the task
+        set.add(13);
+        assertEquals("[{2, 13}{null}{1}]", set.toString());
+        set.remove(0);
+        assertEquals("[{null}{1}]", set.toString());
+    }
+    @Test
+    void getElementIndexByValue() {
+        assertEquals(0, set.get(Integer.valueOf(2)));
+        assertEquals(9,set.get(null));
+        assertEquals(-1,set.get(Integer.valueOf(5)));
     }
 
+
+    @Test
+    void getValueByIndex() {  //This method is made to fulfill the conditions of the task
+        assertEquals(2, set.get(0));
+        assertNull(set.get(8));
+    }
     @Test
     void getSize() {
         assertEquals(11, set.getSize());
