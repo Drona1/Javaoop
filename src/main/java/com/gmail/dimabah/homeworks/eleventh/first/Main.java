@@ -25,16 +25,16 @@ public class Main {
         String name;
         printStat(name = "FileInputStream",
                 copyFileUsingFileInputStream(from, to, name + extension),
-                to.getAbsolutePath() + name + extension);
+                path + "\\" + name + extension);
         printStat(name = "FileReader",
                 copyFileUsingFileReader(from, to, name + extension),
-                to.getAbsolutePath() + name + extension);
+                path + "\\" + name + extension);
         printStat(name = "BufferedReader",
                 copyFileUsingBufferedReader(from, to, name + extension),
-                to.getAbsolutePath() + name + extension);
+                path + "\\" + name + extension);
         printStat(name = "Scanner",
                 copyFileUsingScanner(from, to, name + extension),
-                to.getAbsolutePath() + name + extension);
+                path + "\\" + name + extension);
     }
 
     private static void printStat(String name, long time, String to) {
@@ -44,7 +44,7 @@ public class Main {
     private static long copyFileUsingFileInputStream(File from, File to, String name) {
         long startTime = System.nanoTime();
         try (FileInputStream fileIn = new FileInputStream(from);
-             FileOutputStream fileOut = new FileOutputStream(to + name)) {
+             FileOutputStream fileOut = new FileOutputStream(to + "\\" + name)) {
             byte[] buffer = new byte[1024];
             int readByte;
             while ((readByte = fileIn.read(buffer)) != -1) {
@@ -59,7 +59,7 @@ public class Main {
     private static long copyFileUsingFileReader(File from, File to, String name) {
         long startTime = System.nanoTime();
         try (FileReader fileIn = new FileReader(from);
-             FileWriter fileOut = new FileWriter(to + name)) {
+             FileWriter fileOut = new FileWriter(to + "\\" + name)) {
             int readChar;
             while ((readChar = fileIn.read()) != -1) {
                 fileOut.write(readChar);
@@ -73,7 +73,7 @@ public class Main {
     private static long copyFileUsingBufferedReader(File from, File to, String name) {
         long startTime = System.nanoTime();
         try (BufferedReader fileIn = new BufferedReader(new FileReader(from));
-             BufferedWriter fileOut = new BufferedWriter(new FileWriter(to + name))) {
+             BufferedWriter fileOut = new BufferedWriter(new FileWriter(to + "\\" + name))) {
             String readLine = fileIn.readLine();
             while (readLine != null) {
                 fileOut.write(readLine);
@@ -91,7 +91,7 @@ public class Main {
     private static long copyFileUsingScanner(File from, File to, String name) {
         long startTime = System.nanoTime();
         try (Scanner fileIn = new Scanner(from);
-             PrintWriter fileOut = new PrintWriter(to + name)) {
+             PrintWriter fileOut = new PrintWriter(to + "\\" + name)) {
             while (fileIn.hasNextLine()) {
                 fileOut.print(fileIn.nextLine());
                 if (fileIn.hasNextLine()) {
