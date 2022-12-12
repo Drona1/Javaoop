@@ -9,18 +9,18 @@ public class Main {
         Integer[] array = new Integer[length];
         RaceConditionExample example = new RaceConditionExample(array);
         System.out.println("Race condition example:");
-        tryToGenerateRaceCondition(treads,example::incrementWithoutSynchronized);
+        tryToGenerateRaceCondition(treads, example::incrementWithoutSynchronized);
         showStatistic(array, treads.length);
         System.out.println();
 
         array = new Integer[length];
         RaceConditionExample example2 = new RaceConditionExample(array);
         System.out.println("With synchronized:");
-        tryToGenerateRaceCondition(treads,example2::incrementWithSynchronized);
+        tryToGenerateRaceCondition(treads, example2::incrementWithSynchronized);
         showStatistic(array, treads.length);
-
     }
-    private static void tryToGenerateRaceCondition(Thread[] treads,Runnable task) {
+
+    private static void tryToGenerateRaceCondition(Thread[] treads, Runnable task) {
         for (int i = 0; i < treads.length; i++) {
             treads[i] = new Thread(task);
             treads[i].start();
