@@ -3,41 +3,41 @@ package com.gmail.dimabah.homeworks.twelfth;
 public class Main {
     public static void main(String[] args) {
         int length = 10000;
-        int treadsCount = 32;
-        Thread[] treads = new Thread[treadsCount];
+        int threadsCount = 32;
+        Thread[] threads = new Thread[threadsCount];
 
         Integer[] array = new Integer[length];
         RaceConditionExample example = new RaceConditionExample(array);
         System.out.println("Race condition example:");
-        tryToGenerateRaceCondition(treads, example::incrementWithoutSynchronized);
-        showStatistic(array, treads.length);
+        tryToGenerateRaceCondition(threads, example::incrementWithoutSynchronized);
+        showStatistic(array, threads.length);
         System.out.println();
 
         array = new Integer[length];
         RaceConditionExample example2 = new RaceConditionExample(array);
         System.out.println("With synchronized:");
-        tryToGenerateRaceCondition(treads, example2::incrementWithSynchronized);
-        showStatistic(array, treads.length);
+        tryToGenerateRaceCondition(threads, example2::incrementWithSynchronized);
+        showStatistic(array, threads.length);
     }
 
-    private static void tryToGenerateRaceCondition(Thread[] treads, Runnable task) {
-        for (int i = 0; i < treads.length; i++) {
-            treads[i] = new Thread(task);
-            treads[i].start();
+    private static void tryToGenerateRaceCondition(Thread[] threads, Runnable task) {
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new Thread(task);
+            threads[i].start();
         }
-        for (Thread tread : treads) {
+        for (Thread i : threads) {
             try {
-                tread.join();
+                i.join();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
-    private static void showStatistic(Integer[] array, int treadsCount) {
+    private static void showStatistic(Integer[] array, int threadsCount) {
         int totalCount = 0;
         String times;
-        for (int i = treadsCount; i > 0; i--) {
+        for (int i = threadsCount; i > 0; i--) {
             int count = 0;
             for (var j : array) {
                 if (i == j) {
